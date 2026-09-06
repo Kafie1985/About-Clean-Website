@@ -8,6 +8,8 @@ import {
   WashingMachineIcon,
 } from "lucide-react";
 
+import { cn } from "@/lib/utils";
+
 export const laundryFeatures = [
   {
     title: "Self-service, on your schedule",
@@ -55,7 +57,12 @@ export function FeatureGrid({
   items: { title: string; body: string; icon: typeof ClockIcon }[];
 }) {
   return (
-    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    <div
+      className={cn(
+        "grid gap-5 sm:grid-cols-2",
+        items.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"
+      )}
+    >
       {items.map((item) => (
         <div
           key={item.title}

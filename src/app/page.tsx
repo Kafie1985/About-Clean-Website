@@ -111,32 +111,13 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-lg">
-            <Image
-              src="/images/car-wash.jpg"
-              alt="Soapy sponge washing a car at an About Clean car wash"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 50vw, 100vw"
-            />
-          </div>
-          <div>
-            <p className="text-sm font-semibold tracking-[0.16em] text-primary uppercase">
-              Car washes
-            </p>
-            <h2 className="mt-2 font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
-              Three 24-hour washes in Roanoke
-            </h2>
-            <p className="mt-4 text-base leading-7 text-muted-foreground">
-              Manual bays, vacuums, change machines, and a dry-off area at every
-              location. Peters Creek adds a touch-free automatic. Wasena includes
-              free air for tires.
-            </p>
-            <div className="mt-8">
-              <FeatureGrid items={carWashFeatures} />
-            </div>
-          </div>
+        <SectionHeading
+          eyebrow="Car washes"
+          title="Three 24-hour washes in Roanoke"
+          description="Manual bays, vacuums, change machines, and a dry-off area at every location. Peters Creek adds a touch-free automatic. Wasena includes free air for tires."
+        />
+        <div className="mt-10">
+          <FeatureGrid items={carWashFeatures} />
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-3">
           {featuredWashes.map((location) => (

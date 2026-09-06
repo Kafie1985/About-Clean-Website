@@ -3,10 +3,6 @@
 import { useState, type FormEvent, type ReactNode } from "react";
 import { CheckCircle2Icon } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { locations } from "@/lib/locations";
 import { site } from "@/lib/site";
 
@@ -22,8 +18,10 @@ export function InquiryForm({
   const [submitted, setSubmitted] = useState(false);
   const [mailto, setMailto] = useState("");
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    event.stopPropagation();
+
     const data = new FormData(event.currentTarget);
     const name = String(data.get("name") || "").trim();
     const email = String(data.get("email") || "").trim();
@@ -31,6 +29,8 @@ export function InquiryForm({
     const store = String(data.get("store") || "").trim();
     const message = String(data.get("message") || "").trim();
     const machine = String(data.get("machine") || "").trim();
+
+    if (!name || !email || message.length < 10) return;
 
     const subject =
       kind === "refund"
@@ -49,55 +49,77 @@ export function InquiryForm({
       .filter(Boolean)
       .join("\n");
 
-    const href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setMailto(href);
+    setMailto(
+      `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    );
     setSubmitted(true);
   }
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border bg-blue-50 px-6 py-10 text-center">
+      <div
+        role="status"
+        className="rounded-2xl border border-primary/20 bg-blue-50 px-6 py-10 text-center"
+      >
         <CheckCircle2Icon className="mx-auto size-10 text-primary" />
         <h3 className="mt-4 font-heading text-xl font-semibold">
-          {kind === "refund" ? "Refund request ready to send" : "Message ready to send"}
+          {kind === "refund"
+            ? "Refund request ready to send"
+            : "Message ready to send"}
         </h3>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
           Thanks — your message is ready to send to {site.email}. Tap the button
           below to open it in your email app.
         </p>
-        <Button render={<a href={mailto} />} className="mt-5 h-10 rounded-full px-5">
+        <a
+          href={mailto}
+          className="mt-5 inline-flex h-10 items-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground hover:bg-primary/80"
+        >
           Open email to {site.email}
-        </Button>
+        </a>
       </div>
     );
   }
 
+  const fieldClass =
+    "h-10 w-full rounded-lg border border-input bg-white px-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
+
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Name" htmlFor={`${kind}-name`}>
-          <Input id={`${kind}-name`} name="name" required className="h-10" />
+          <input
+            id={`${kind}-name`}
+            name="name"
+            required
+            className={fieldClass}
+          />
         </Field>
         <Field label="Email" htmlFor={`${kind}-email`}>
-          <Input
+          <input
             id={`${kind}-email`}
             name="email"
             type="email"
             required
-            className="h-10"
+            className={fieldClass}
           />
         </Field>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Phone" htmlFor={`${kind}-phone`}>
-          <Input id={`${kind}-phone`} name="phone" type="tel" className="h-10" />
+          <input
+            id={`${kind}-phone`}
+            name="phone"
+            type="tel"
+            className={fieldClass}
+          />
         </Field>
         <Field label="Location" htmlFor={`${kind}-store`}>
           <select
             id={`${kind}-store`}
             name="store"
             defaultValue={defaultLocation ?? ""}
-            className="h-10 w-full rounded-lg border border-input bg-transparent px-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+            className={fieldClass}
           >
             <option value="">Any location</option>
             {locations.map((location) => (
@@ -109,25 +131,28 @@ export function InquiryForm({
         </Field>
       </div>
       {kind === "refund" ? (
-        <Field label="Machine number (if you have it)" htmlFor="machine">
-          <Input id="machine" name="machine" className="h-10" />
+        <Field label="Machine number (if you have it)" htmlFor={`${kind}-machine`}>
+          <input id={`${kind}-machine`} name="machine" className={fieldClass} />
         </Field>
       ) : null}
       <Field
         label={kind === "refund" ? "What happened?" : "How can we help?"}
         htmlFor={`${kind}-message`}
       >
-        <Textarea
+        <textarea
           id={`${kind}-message`}
           name="message"
           required
           minLength={10}
-          className="min-h-32"
+          className="min-h-32 w-full rounded-lg border border-input bg-white px-2.5 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
         />
       </Field>
-      <Button type="submit" className="h-11 rounded-full px-6">
+      <button
+        type="submit"
+        className="inline-flex h-11 items-center rounded-full bg-primary px-6 text-sm font-medium text-primary-foreground hover:bg-primary/80"
+      >
         {kind === "refund" ? "Submit refund request" : "Send message"}
-      </Button>
+      </button>
     </form>
   );
 }
@@ -143,7 +168,9 @@ function Field({
 }) {
   return (
     <div className="grid gap-1.5">
-      <Label htmlFor={htmlFor}>{label}</Label>
+      <label htmlFor={htmlFor} className="text-sm font-medium">
+        {label}
+      </label>
       {children}
     </div>
   );

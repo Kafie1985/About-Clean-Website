@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import {
   CircleHelpIcon,
   HomeIcon,
@@ -36,10 +37,44 @@ export function SiteHeader() {
     return pathname.startsWith(href);
   }
 
+  const menu = (
+    <div
+      id="mobile-nav"
+      className="fixed inset-x-0 top-[72px] z-50 border-t bg-white shadow-lg"
+    >
+      <nav className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-4 py-4 sm:px-6">
+        {nav.map((item) => {
+          const Icon = icons[item.icon];
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className={cn(
+                "inline-flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium hover:bg-muted",
+                isActive(item.href) ? "text-primary" : "text-foreground"
+              )}
+            >
+              <Icon className="size-4 text-primary" />
+              {item.label}
+            </Link>
+          );
+        })}
+        <a
+          href={site.phoneHref}
+          className="mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/80"
+        >
+          <PhoneIcon className="size-4" />
+          Call {site.phone}
+        </a>
+      </nav>
+    </div>
+  );
+
   return (
     <header className="sticky top-0 z-40 border-b bg-white/95 shadow-sm backdrop-blur-md">
       <div className="mx-auto flex h-[72px] w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <Link href="/" className="shrink-0" onClick={() => setOpen(false)}>
+        <Link href="/" className="shrink-0">
           <Logo />
         </Link>
 
@@ -77,39 +112,7 @@ export function SiteHeader() {
         </button>
       </div>
 
-      {open ? (
-        <div
-          id="mobile-nav"
-          className="border-t bg-white lg:hidden"
-        >
-          <nav className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-4 py-4 sm:px-6">
-            {nav.map((item) => {
-              const Icon = icons[item.icon];
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className={cn(
-                    "inline-flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium hover:bg-muted",
-                    isActive(item.href) ? "text-primary" : "text-foreground"
-                  )}
-                >
-                  <Icon className="size-4 text-primary" />
-                  {item.label}
-                </Link>
-              );
-            })}
-            <a
-              href={site.phoneHref}
-              className="mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/80"
-            >
-              <PhoneIcon className="size-4" />
-              Call {site.phone}
-            </a>
-          </nav>
-        </div>
-      ) : null}
+      {open ? createPortal(menu, document.body) : null}
     </header>
   );
 }

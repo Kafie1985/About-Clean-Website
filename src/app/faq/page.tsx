@@ -16,17 +16,14 @@ export const metadata: Metadata = {
 
 export default function FaqPage() {
   return (
-    <div className="mx-auto w-full max-w-3xl px-4 py-14 sm:px-6">
-      <p className="text-sm font-semibold tracking-[0.16em] text-primary uppercase">
-        FAQ
-      </p>
-      <h1 className="mt-2 font-heading text-4xl font-semibold tracking-tight">
-        Frequently asked questions
+    <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6">
+      <h1 className="text-center font-heading text-4xl font-bold tracking-tight">
+        Frequently Asked Questions
       </h1>
-      <p className="mt-3 text-base leading-7 text-muted-foreground">
-        Straight answers about hours, machines, car washes, and refunds.
+      <p className="mt-3 text-center text-base leading-7 text-muted-foreground">
+        Find answers to common questions about About Clean.
       </p>
-      <Accordion className="mt-10 rounded-2xl border bg-white px-4">
+      <Accordion className="mt-10 rounded-2xl border bg-white px-5 py-2 shadow-sm">
         {faqs.map((item, index) => (
           <AccordionItem key={item.question} value={`faq-${index}`}>
             <AccordionTrigger className="py-4 text-base">

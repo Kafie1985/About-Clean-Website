@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPinIcon, PhoneIcon } from "lucide-react";
+import { ClockIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 
 import { LocationCard } from "@/components/location-card";
 import {
@@ -29,82 +29,58 @@ export default function HomePage() {
           className="object-cover"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-[#0b3a5b]/70" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0b3a5b] via-transparent to-black/20" />
-        <div className="relative mx-auto flex min-h-[78vh] w-full max-w-6xl flex-col justify-center px-4 py-20 sm:px-6">
-          <p className="text-sm font-semibold tracking-[0.2em] text-sky-200 uppercase">
-            Welcome to About Clean
-          </p>
-          <h1 className="mt-4 max-w-3xl font-heading text-4xl font-semibold tracking-tight text-white text-balance sm:text-5xl lg:text-6xl">
-            Your trusted self-service laundry and car wash: clean, safe,
-            comfortable, and fast.
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-sky-100/90 text-pretty">
-            Big washers and hot dryers for life’s toughest laundry, plus 24-hour
-            self-serve car washes across the Roanoke Valley and Blacksburg.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button
-              render={<Link href="/locations" />}
-              className="h-12 rounded-full bg-white px-6 text-base font-semibold text-[#0b3a5b] hover:bg-sky-100"
-            >
-              <MapPinIcon />
-              Find location
-            </Button>
-            <Button
-              variant="outline"
-              render={<Link href="/contact" />}
-              className="h-12 rounded-full border-white/40 bg-white/10 px-6 text-base font-semibold text-white hover:bg-white/20"
-            >
-              Contact us
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b bg-white">
-        <div className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-2">
+        <div className="absolute inset-0 bg-[#2c3d55]/75" />
+        <div className="relative mx-auto grid min-h-[78vh] w-full max-w-6xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.15fr_0.85fr]">
           <div>
-            <p className="text-sm font-semibold tracking-[0.16em] text-primary uppercase">
-              Visit us
+            <p className="text-sm text-white/90">Welcome to About Clean</p>
+            <h1 className="mt-3 max-w-3xl font-heading text-4xl font-bold tracking-tight text-white text-balance sm:text-5xl">
+              Your Trusted Self-Service Laundry and Car Wash: Clean, Safe, Comfortable, and Fast
+            </h1>
+            <p className="mt-5 max-w-2xl text-base leading-8 text-white/90 text-pretty sm:text-lg">
+              Discover the ultimate laundry experience at About Clean. We’ve got
+              you covered with big washers and hot dryers, plus 24-hour car
+              washes, because you deserve the best place to handle life’s
+              toughest loads.
             </p>
-            <h2 className="mt-2 font-heading text-2xl font-semibold">
-              Open when you need us
-            </h2>
-            <p className="mt-3 max-w-md text-sm leading-6 text-muted-foreground">
-              Six laundromats and three car washes, stocked with commercial
-              machines and the basics: changers, vending, TVs, and clean
-              restrooms.
-            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button
+                render={<Link href="/locations" />}
+                className="h-12 rounded-md bg-primary px-6 text-base font-semibold text-white hover:bg-primary/90"
+              >
+                <MapPinIcon />
+                Find Location
+              </Button>
+              <Button
+                variant="outline"
+                render={<Link href="/contact" />}
+                className="h-12 rounded-md border-white bg-transparent px-6 text-base font-semibold text-white hover:bg-white/10"
+              >
+                Contact Us
+              </Button>
+            </div>
           </div>
-          <dl className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl bg-sky-50 p-5">
-              <dt className="text-sm font-medium text-muted-foreground">
-                Laundromats
-              </dt>
-              <dd className="mt-1 text-lg font-semibold">{site.laundryHours}</dd>
-              <dd className="text-sm text-muted-foreground">
-                {site.laundryLastLoad}
-              </dd>
-            </div>
-            <div className="rounded-2xl bg-sky-50 p-5">
-              <dt className="text-sm font-medium text-muted-foreground">
-                Car washes
-              </dt>
-              <dd className="mt-1 text-lg font-semibold">{site.carWashHours}</dd>
-              <dd className="text-sm text-muted-foreground">
-                Self-serve bays, vacuums, and supplies
-              </dd>
-            </div>
-          </dl>
+          <aside className="max-w-md justify-self-end rounded-2xl border border-white/20 bg-black/35 p-6 text-white shadow-xl backdrop-blur-md lg:p-8">
+            <h2 className="font-heading text-2xl font-semibold">Visit Us</h2>
+            <p className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-sky-100">
+              <ClockIcon className="size-4" />
+              {site.laundryHours}
+            </p>
+            <p className="mt-1 text-sm text-sky-100/80">{site.laundryLastLoad}</p>
+            <p className="mt-2 text-sm font-medium text-sky-100">
+              Car washes: {site.carWashHours}
+            </p>
+            <p className="mt-4 text-sm leading-6 text-white/85">
+              Our stores are equipped with modern commercial machines and
+              amenities to make laundry and car washing seamless and efficient.
+            </p>
+          </aside>
         </div>
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6">
         <SectionHeading
-          eyebrow="Experience the difference"
-          title="Why neighbors pick About Clean"
-          description="The same idea as a modern self-service laundry: get in, get it done, get on with your day — with car washes in the mix."
+          title="Experience the Difference"
+          description="Discover why About Clean is the best laundry and car wash near you."
         />
         <div className="mt-12">
           <FeatureGrid items={laundryFeatures} />
@@ -169,22 +145,29 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-t bg-white">
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-16 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <div>
-            <h2 className="font-heading text-2xl font-semibold">
-              Call or email anytime
-            </h2>
-            <p className="mt-2 text-muted-foreground">{site.supportHours}</p>
-          </div>
-          <div className="flex flex-col gap-2 text-lg font-semibold">
-            <a href={site.phoneHref} className="inline-flex items-center gap-2 hover:text-primary">
-              <PhoneIcon className="size-5" />
+      <section className="bg-white">
+        <div className="mx-auto w-full max-w-3xl px-4 py-20 text-center sm:px-6">
+          <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
+            Get in Touch
+          </h2>
+          <p className="mt-3 text-muted-foreground">{site.supportHours}</p>
+          <div className="mt-8 space-y-2 text-lg font-semibold">
+            <a href={site.phoneHref} className="inline-flex items-center justify-center gap-2 hover:text-primary">
+              <PhoneIcon className="size-5 text-primary" />
               {site.phone}
             </a>
-            <a href={site.emailHref} className="hover:text-primary">
-              {site.email}
-            </a>
+            <div>
+              <a href={site.emailHref} className="hover:text-primary">
+                {site.email}
+              </a>
+            </div>
+            <p className="pt-2 text-sm font-normal text-muted-foreground">
+              For refund requests, please fill out the form{" "}
+              <Link href="/refunds" className="font-medium text-primary underline-offset-4 hover:underline">
+                here
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </section>

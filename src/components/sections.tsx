@@ -55,7 +55,7 @@ export function FeatureGrid({
   items: { title: string; body: string; icon: typeof ClockIcon }[];
 }) {
   return (
-    <div className="grid gap-5 sm:grid-cols-2">
+    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
       {items.map((item) => (
         <div
           key={item.title}
@@ -64,7 +64,7 @@ export function FeatureGrid({
           <div className="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
             <item.icon className="size-5" />
           </div>
-          <h3 className="mt-4 font-heading text-lg font-semibold">{item.title}</h3>
+          <h3 className="mt-4 font-heading text-lg font-semibold text-balance">{item.title}</h3>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.body}</p>
         </div>
       ))}

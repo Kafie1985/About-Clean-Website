@@ -9,15 +9,18 @@ export const site = {
   phoneHref: "tel:+15403396695",
   email: "aboutcleanva@gmail.com",
   emailHref: "mailto:aboutcleanva@gmail.com",
-  laundryHours: "Open every day | 6:00 AM – 10:00 PM",
+  laundryHours: "Open Every Day | 6 AM – 10 PM",
   laundryLastLoad: "Last load 8:45 PM",
-  carWashHours: "Open 24 hours",
-  supportHours: "Questions? Reach us any day of the week.",
+  carWashHours: "Open 24 Hours",
+  supportHours:
+    "Have questions? We’re here to help. Reach us any day of the week.",
 } as const;
 
 export const nav = [
-  { href: "/locations", label: "Locations" },
-  { href: "/about", label: "About" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Home", icon: "home" },
+  { href: "/about", label: "About", icon: "about" },
+  { href: "/locations", label: "Store Locator", icon: "pin" },
+  { href: "/refunds", label: "Refunds", icon: "refund" },
+  { href: "/faq", label: "FAQ", icon: "faq" },
+  { href: "/contact", label: "Contact", icon: "contact" },
 ] as const;

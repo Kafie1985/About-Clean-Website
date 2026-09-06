@@ -12,15 +12,11 @@ export const metadata: Metadata = {
 export default function LocationsPage() {
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-14 sm:px-6">
-      <p className="text-sm font-semibold tracking-[0.16em] text-primary uppercase">
-        Locations
-      </p>
-      <h1 className="mt-2 font-heading text-4xl font-semibold tracking-tight">
-        Find a store near you
+      <h1 className="text-center font-heading text-4xl font-bold tracking-tight">
+        Find a Location Near You!
       </h1>
-      <p className="mt-3 max-w-2xl text-base leading-7 text-muted-foreground">
-        Six self-service laundromats and three 24-hour car washes. Search by
-        city, or filter by laundry and car wash.
+      <p className="mt-3 text-center text-base leading-7 text-muted-foreground">
+        Locate your nearest About Clean laundromat or car wash.
       </p>
       <div className="mt-10">
         <Suspense fallback={<p className="text-sm text-muted-foreground">Loading locations…</p>}>

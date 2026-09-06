@@ -1,8 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { MenuIcon, PhoneIcon } from "lucide-react";
+import {
+  CircleHelpIcon,
+  HomeIcon,
+  InfoIcon,
+  MapPinIcon,
+  MenuIcon,
+  PhoneIcon,
+  RefreshCcwIcon,
+} from "lucide-react";
 
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
@@ -14,48 +23,54 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { nav, site } from "@/lib/site";
+import { cn } from "@/lib/utils";
+
+const icons = {
+  home: HomeIcon,
+  about: InfoIcon,
+  pin: MapPinIcon,
+  refund: RefreshCcwIcon,
+  faq: CircleHelpIcon,
+  contact: PhoneIcon,
+};
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  function isActive(href: string) {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
+  }
+
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-[#0b3a5b]/95 text-white backdrop-blur-md">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6">
+    <header className="sticky top-0 z-40 border-b bg-white/95 shadow-sm backdrop-blur-md">
+      <div className="mx-auto flex h-[72px] w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" className="shrink-0" onClick={() => setOpen(false)}>
-          <Logo
-            className="[&_span.block:first-child]:text-white [&_span.block:last-child]:text-sky-200"
-            markClassName="size-9"
-          />
+          <Logo />
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
-          {nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="rounded-full px-3 py-2 text-sm font-medium text-sky-100 transition-colors hover:bg-white/10 hover:text-white"
-            >
-              {item.label}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-1 lg:flex">
+          {nav.map((item) => {
+            const Icon = icons[item.icon];
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "inline-flex items-center gap-1.5 rounded-md px-2.5 py-2 text-sm font-medium transition-colors",
+                  active
+                    ? "text-primary"
+                    : "text-foreground/80 hover:text-primary"
+                )}
+              >
+                <Icon className="size-4 text-primary" />
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
-
-        <div className="hidden items-center gap-2 md:flex">
-          <Button
-            variant="ghost"
-            render={<a href={site.phoneHref} />}
-            className="text-sky-100 hover:bg-white/10 hover:text-white"
-          >
-            <PhoneIcon />
-            {site.phone}
-          </Button>
-          <Button
-            render={<Link href="/locations" />}
-            className="h-10 rounded-full bg-white px-4 text-sm font-semibold text-[#0b3a5b] hover:bg-sky-100"
-          >
-            Find Location
-          </Button>
-        </div>
 
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
@@ -63,7 +78,7 @@ export function SiteHeader() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-white hover:bg-white/10 md:hidden"
+                className="lg:hidden"
               />
             }
           >
@@ -77,26 +92,26 @@ export function SiteHeader() {
               </SheetTitle>
             </SheetHeader>
             <nav className="flex flex-col gap-1 px-4">
-              {nav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-3 text-base font-medium text-foreground hover:bg-muted"
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Link
-                href="/refunds"
-                onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-3 text-base font-medium text-foreground hover:bg-muted"
-              >
-                Request a refund
-              </Link>
+              {nav.map((item) => {
+                const Icon = icons[item.icon];
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className={cn(
+                      "inline-flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium hover:bg-muted",
+                      isActive(item.href) ? "text-primary" : "text-foreground"
+                    )}
+                  >
+                    <Icon className="size-4 text-primary" />
+                    {item.label}
+                  </Link>
+                );
+              })}
               <Button
                 render={<a href={site.phoneHref} />}
-                className="mt-4 h-11 rounded-full"
+                className="mt-4 h-11 rounded-md"
               >
                 <PhoneIcon />
                 Call {site.phone}

@@ -13,10 +13,7 @@ export function SiteFooter() {
     <footer className="mt-auto bg-[#0b3a5b] text-sky-50">
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-1">
-          <Logo
-            className="[&_span.block:first-child]:text-white [&_span.block:last-child]:text-sky-200"
-            markClassName="size-9"
-          />
+          <Logo inverted />
           <p className="mt-4 max-w-xs text-sm leading-6 text-sky-100/80">
             Self-service laundromats and car washes in Roanoke, Vinton, and
             Blacksburg. Clean stores, big machines, and hours that fit real
@@ -36,11 +33,6 @@ export function SiteFooter() {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link href="/refunds" className="hover:text-white">
-                Request a refund
-              </Link>
-            </li>
           </ul>
         </div>
 

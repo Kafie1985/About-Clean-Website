@@ -22,8 +22,8 @@ export default function HomePage() {
     <>
       <section className="relative isolate min-h-[78vh] overflow-hidden">
         <Image
-          src="/images/laundry-fold.jpg"
-          alt="Row of commercial dryers in an About Clean laundromat"
+          src="/images/washing-machine.jpg"
+          alt="Front-loading washing machine"
           fill
           priority
           className="object-cover"

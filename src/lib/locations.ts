@@ -60,7 +60,7 @@ export const locations: SiteLocation[] = [
       "A well-equipped southwest Roanoke laundry with loaders from everyday loads to bulky comforters.",
     lat: 37.2628906,
     lon: -80.0026367,
-    image: "/images/laundry-row.jpg",
+    image: "/images/washing-machine.jpg",
   },
   {
     slug: "brambleton-laundromat",
@@ -94,7 +94,7 @@ export const locations: SiteLocation[] = [
       "Two waiting rooms, plenty of dryers, and extra-large washers for southwest Roanoke families.",
     lat: 37.2394385,
     lon: -79.9974799,
-    image: "/images/laundry-fold.jpg",
+    image: "/images/washing-machine.jpg",
   },
   {
     slug: "peters-creek-laundromat",
@@ -130,7 +130,7 @@ export const locations: SiteLocation[] = [
       "Northwest Roanoke laundry with oversized dryers and a car wash next door when you need both done.",
     lat: 37.314139,
     lon: -80.005805,
-    image: "/images/laundry-row.jpg",
+    image: "/images/washing-machine.jpg",
   },
   {
     slug: "williamson-road-coin-laundry",
@@ -165,7 +165,7 @@ export const locations: SiteLocation[] = [
       "Our largest parking lot, outdoor vacuums, and jumbo dryers on Williamson Road.",
     lat: 37.310622,
     lon: -79.950132,
-    image: "/images/laundry-fold.jpg",
+    image: "/images/washing-machine.jpg",
   },
   {
     slug: "vinton-laundromat",
@@ -198,7 +198,7 @@ export const locations: SiteLocation[] = [
       "Vinton’s high-capacity laundry with 28 standard dryers and extra-large washers for bulky loads.",
     lat: 37.2731653,
     lon: -79.890295,
-    image: "/images/laundry-row.jpg",
+    image: "/images/washing-machine.jpg",
   },
   {
     slug: "north-main-street-laundromat",
@@ -233,7 +233,7 @@ export const locations: SiteLocation[] = [
       "Blacksburg’s Main Street laundry with a wide mix of top-load and large side-load machines.",
     lat: 37.2390534,
     lon: -80.4203524,
-    image: "/images/laundry-fold.jpg",
+    image: "/images/washing-machine.jpg",
   },
   {
     slug: "peters-creek-car-wash",

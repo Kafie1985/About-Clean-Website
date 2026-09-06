@@ -19,8 +19,8 @@ export default function AboutPage() {
     <>
       <section className="relative isolate min-h-[40vh] overflow-hidden">
         <Image
-          src="/images/laundry-row.jpg"
-          alt="Commercial washers at About Clean"
+          src="/images/washing-machine.jpg"
+          alt="Front-loading washing machine"
           fill
           className="object-cover"
           priority

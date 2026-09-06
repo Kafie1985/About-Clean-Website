@@ -24,9 +24,10 @@ const icons = {
 
 export function SiteHeader() {
   return (
-    <header className="group sticky top-0 z-40 border-b bg-white shadow-sm">
+    <header className="group sticky top-0 z-40 bg-white shadow-sm">
+      <div className="h-1.5 bg-brand-gold" />
       <input id="nav-toggle" type="checkbox" className="peer sr-only" />
-      <div className="mx-auto flex h-[72px] w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+      <div className="mx-auto flex h-[76px] w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link href="/" className="shrink-0">
           <Logo />
         </Link>
@@ -38,9 +39,9 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
+                className="inline-flex items-center gap-1.5 rounded-md px-2.5 py-2 text-sm font-medium text-brand-ink/80 transition-colors hover:text-brand-navy"
               >
-                <Icon className="size-4 text-primary" />
+                <Icon className="size-4 text-brand-gold-deep" />
                 {item.label}
               </Link>
             );
@@ -49,15 +50,16 @@ export function SiteHeader() {
 
         <label
           htmlFor="nav-toggle"
-          className="inline-flex size-10 cursor-pointer items-center justify-center rounded-md text-foreground hover:bg-muted lg:hidden"
+          className="inline-flex size-10 cursor-pointer items-center justify-center rounded-md text-brand-ink hover:bg-brand-gold/20 lg:hidden"
         >
           <MenuIcon className="size-5 group-has-[#nav-toggle:checked]:hidden" />
           <XIcon className="hidden size-5 group-has-[#nav-toggle:checked]:block" />
           <span className="sr-only">Menu</span>
         </label>
       </div>
+      <div className="h-px bg-brand-navy/20" />
 
-      <nav className="hidden border-t bg-white peer-checked:block lg:peer-checked:hidden">
+      <nav className="hidden border-t border-brand-gold/40 bg-white peer-checked:block lg:peer-checked:hidden">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-4 py-4 sm:px-6">
           {nav.map((item) => {
             const Icon = icons[item.icon];
@@ -65,18 +67,18 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="inline-flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium hover:bg-muted"
+                className="inline-flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium text-brand-ink hover:bg-brand-gold/15"
               >
-                <Icon className="size-4 text-primary" />
+                <Icon className="size-4 text-brand-gold-deep" />
                 {item.label}
               </Link>
             );
           })}
           <a
             href={site.phoneHref}
-            className="mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/80"
+            className="mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-md bg-brand-navy px-4 text-sm font-medium text-white hover:bg-brand-navy/90"
           >
-            <PhoneIcon className="size-4" />
+            <PhoneIcon className="size-4 text-brand-gold" />
             Call {site.phone}
           </a>
         </div>

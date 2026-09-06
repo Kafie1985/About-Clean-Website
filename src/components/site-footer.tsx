@@ -10,7 +10,8 @@ export function SiteFooter() {
   const carWashes = locations.filter((l) => l.type === "car-wash");
 
   return (
-    <footer className="mt-auto bg-[#0b3a5b] text-sky-50">
+    <footer className="mt-auto bg-brand-navy text-sky-50">
+      <div className="h-1.5 bg-brand-gold" />
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-1">
           <Logo inverted />
@@ -22,13 +23,13 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold tracking-wide text-white uppercase">
+          <h2 className="text-sm font-semibold tracking-wide text-brand-gold uppercase">
             Visit
           </h2>
           <ul className="mt-3 space-y-2 text-sm text-sky-100/85">
             {nav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-white">
+                <Link href={item.href} className="hover:text-brand-gold">
                   {item.label}
                 </Link>
               </li>
@@ -37,7 +38,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold tracking-wide text-white uppercase">
+          <h2 className="text-sm font-semibold tracking-wide text-brand-gold uppercase">
             Laundromats
           </h2>
           <ul className="mt-3 space-y-2 text-sm text-sky-100/85">
@@ -45,7 +46,7 @@ export function SiteFooter() {
               <li key={location.slug}>
                 <Link
                   href={`/locations/${location.slug}`}
-                  className="hover:text-white"
+                  className="hover:text-brand-gold"
                 >
                   {location.name}
                 </Link>
@@ -55,7 +56,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h2 className="text-sm font-semibold tracking-wide text-white uppercase">
+          <h2 className="text-sm font-semibold tracking-wide text-brand-gold uppercase">
             Car washes
           </h2>
           <ul className="mt-3 space-y-2 text-sm text-sky-100/85">
@@ -63,7 +64,7 @@ export function SiteFooter() {
               <li key={location.slug}>
                 <Link
                   href={`/locations/${location.slug}`}
-                  className="hover:text-white"
+                  className="hover:text-brand-gold"
                 >
                   {location.name}
                 </Link>
@@ -73,22 +74,22 @@ export function SiteFooter() {
           <div className="mt-6 space-y-2 text-sm text-sky-100/85">
             <a
               href={site.phoneHref}
-              className="flex items-center gap-2 hover:text-white"
+              className="flex items-center gap-2 hover:text-brand-gold"
             >
-              <PhoneIcon className="size-4" />
+              <PhoneIcon className="size-4 text-brand-gold" />
               {site.phone}
             </a>
             <a
               href={site.emailHref}
-              className="flex items-center gap-2 hover:text-white"
+              className="flex items-center gap-2 hover:text-brand-gold"
             >
-              <MailIcon className="size-4" />
+              <MailIcon className="size-4 text-brand-gold" />
               {site.email}
             </a>
           </div>
         </div>
       </div>
-      <div className="border-t border-white/10">
+      <div className="border-t border-brand-gold/25">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-5 text-xs text-sky-200/70 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <p>
             © {new Date().getFullYear()} {site.legalName}. All rights reserved.

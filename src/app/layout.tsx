@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Inter } from "next/font/google";
+import { Bitter, Inter } from "next/font/google";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -11,6 +11,11 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
+});
+
+const bitter = Bitter({
+  subsets: ["latin"],
+  variable: "--font-logo",
 });
 
 export const metadata: Metadata = {
@@ -37,7 +42,10 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${bitter.variable} h-full antialiased`}
+    >
       <body className={`${inter.className} flex min-h-full flex-col bg-background`}>
         <SiteHeader />
         <main className="flex-1">{children}</main>

@@ -8,7 +8,12 @@ export const metadata: Metadata = {
     "Report a machine problem or request a refund at an About Clean laundromat or car wash.",
 };
 
-export default function RefundsPage() {
+export default async function RefundsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ sent?: string }>;
+}) {
+  const { sent } = await searchParams;
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-14 sm:px-6">
       <p className="text-sm font-semibold tracking-[0.16em] text-primary uppercase">
@@ -22,7 +27,7 @@ export default function RefundsPage() {
         We’ll follow up at the email or phone you leave.
       </p>
       <div className="mt-8 rounded-2xl border bg-white p-6 shadow-sm sm:p-8">
-        <InquiryForm kind="refund" />
+        <InquiryForm kind="refund" next="/refunds" sent={sent === "1"} />
       </div>
     </div>
   );

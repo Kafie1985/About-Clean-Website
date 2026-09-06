@@ -17,8 +17,12 @@ import {
   typeLabel,
 } from "@/lib/locations";
 
-type LocationPageProps = {
+type LocationParams = {
   params: Promise<{ slug: string }>;
+};
+
+type LocationPageProps = LocationParams & {
+  searchParams: Promise<{ sent?: string }>;
 };
 
 export function generateStaticParams() {
@@ -27,7 +31,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: LocationPageProps): Promise<Metadata> {
+}: LocationParams): Promise<Metadata> {
   const { slug } = await params;
   const location = getLocation(slug);
   if (!location) return { title: "Location" };
@@ -37,8 +41,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function LocationPage({ params }: LocationPageProps) {
+export default async function LocationPage({ params, searchParams }: LocationPageProps) {
   const { slug } = await params;
+  const { sent } = await searchParams;
   const location = getLocation(slug);
   if (!location) notFound();
 
@@ -161,7 +166,12 @@ export default async function LocationPage({ params }: LocationPageProps) {
             up.
           </p>
           <div className="mt-5">
-            <InquiryForm kind="contact" defaultLocation={location.name} />
+            <InquiryForm
+              kind="contact"
+              defaultLocation={location.name}
+              next={`/locations/${location.slug}`}
+              sent={sent === "1"}
+            />
           </div>
         </aside>
       </div>

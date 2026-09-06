@@ -10,7 +10,12 @@ export const metadata: Metadata = {
     "Call, email, or send a message to About Clean about a laundromat or car wash.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ sent?: string }>;
+}) {
+  const { sent } = await searchParams;
   return (
     <div className="mx-auto grid w-full max-w-6xl gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
       <div>
@@ -64,7 +69,7 @@ export default function ContactPage() {
           .
         </p>
         <div className="mt-6">
-          <InquiryForm kind="contact" />
+          <InquiryForm kind="contact" next="/contact" sent={sent === "1"} />
         </div>
       </div>
     </div>

@@ -1,8 +1,6 @@
-"use client";
-
-import { useState, type FormEvent, type ReactNode } from "react";
 import { CheckCircle2Icon } from "lucide-react";
 
+import { submitInquiry } from "@/app/actions";
 import { locations } from "@/lib/locations";
 import { site } from "@/lib/site";
 
@@ -11,51 +9,15 @@ type InquiryKind = "contact" | "refund";
 export function InquiryForm({
   kind,
   defaultLocation,
+  next = "/contact",
+  sent = false,
 }: {
   kind: InquiryKind;
   defaultLocation?: string;
+  next?: string;
+  sent?: boolean;
 }) {
-  const [submitted, setSubmitted] = useState(false);
-  const [mailto, setMailto] = useState("");
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const data = new FormData(event.currentTarget);
-    const name = String(data.get("name") || "").trim();
-    const email = String(data.get("email") || "").trim();
-    const phone = String(data.get("phone") || "").trim();
-    const store = String(data.get("store") || "").trim();
-    const message = String(data.get("message") || "").trim();
-    const machine = String(data.get("machine") || "").trim();
-
-    if (!name || !email || message.length < 10) return;
-
-    const subject =
-      kind === "refund"
-        ? `Refund request${store ? ` — ${store}` : ""}`
-        : `Website message${store ? ` — ${store}` : ""}`;
-
-    const body = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      phone ? `Phone: ${phone}` : null,
-      store ? `Location: ${store}` : null,
-      machine ? `Machine: ${machine}` : null,
-      "",
-      message,
-    ]
-      .filter(Boolean)
-      .join("\n");
-
-    setMailto(
-      `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-    );
-    setSubmitted(true);
-  }
-
-  if (submitted) {
+  if (sent) {
     return (
       <div
         role="status"
@@ -68,14 +30,14 @@ export function InquiryForm({
             : "Message ready to send"}
         </h3>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          Thanks — your message is ready to send to {site.email}. Tap the button
-          below to open it in your email app.
+          Thanks — copy the details into an email to {site.email}, or tap below
+          to open your mail app.
         </p>
         <a
-          href={mailto}
+          href={site.emailHref}
           className="mt-5 inline-flex h-10 items-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground hover:bg-primary/80"
         >
-          Open email to {site.email}
+          Email {site.email}
         </a>
       </div>
     );
@@ -85,17 +47,15 @@ export function InquiryForm({
     "h-10 w-full rounded-lg border border-input bg-white px-2.5 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50";
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form action={submitInquiry} className="space-y-4">
+      <input type="hidden" name="next" value={next} />
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Name" htmlFor={`${kind}-name`}>
-          <input
-            id={`${kind}-name`}
-            name="name"
-            required
-            className={fieldClass}
-          />
-        </Field>
-        <Field label="Email" htmlFor={`${kind}-email`}>
+        <label className="grid gap-1.5 text-sm font-medium" htmlFor={`${kind}-name`}>
+          Name
+          <input id={`${kind}-name`} name="name" required className={fieldClass} />
+        </label>
+        <label className="grid gap-1.5 text-sm font-medium" htmlFor={`${kind}-email`}>
+          Email
           <input
             id={`${kind}-email`}
             name="email"
@@ -103,18 +63,15 @@ export function InquiryForm({
             required
             className={fieldClass}
           />
-        </Field>
+        </label>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Phone" htmlFor={`${kind}-phone`}>
-          <input
-            id={`${kind}-phone`}
-            name="phone"
-            type="tel"
-            className={fieldClass}
-          />
-        </Field>
-        <Field label="Location" htmlFor={`${kind}-store`}>
+        <label className="grid gap-1.5 text-sm font-medium" htmlFor={`${kind}-phone`}>
+          Phone
+          <input id={`${kind}-phone`} name="phone" type="tel" className={fieldClass} />
+        </label>
+        <label className="grid gap-1.5 text-sm font-medium" htmlFor={`${kind}-store`}>
+          Location
           <select
             id={`${kind}-store`}
             name="store"
@@ -128,17 +85,16 @@ export function InquiryForm({
               </option>
             ))}
           </select>
-        </Field>
+        </label>
       </div>
       {kind === "refund" ? (
-        <Field label="Machine number (if you have it)" htmlFor={`${kind}-machine`}>
+        <label className="grid gap-1.5 text-sm font-medium" htmlFor={`${kind}-machine`}>
+          Machine number (if you have it)
           <input id={`${kind}-machine`} name="machine" className={fieldClass} />
-        </Field>
+        </label>
       ) : null}
-      <Field
-        label={kind === "refund" ? "What happened?" : "How can we help?"}
-        htmlFor={`${kind}-message`}
-      >
+      <label className="grid gap-1.5 text-sm font-medium" htmlFor={`${kind}-message`}>
+        {kind === "refund" ? "What happened?" : "How can we help?"}
         <textarea
           id={`${kind}-message`}
           name="message"
@@ -146,7 +102,7 @@ export function InquiryForm({
           minLength={10}
           className="min-h-32 w-full rounded-lg border border-input bg-white px-2.5 py-2 text-sm outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
         />
-      </Field>
+      </label>
       <button
         type="submit"
         className="inline-flex h-11 items-center rounded-full bg-primary px-6 text-sm font-medium text-primary-foreground hover:bg-primary/80"
@@ -154,24 +110,5 @@ export function InquiryForm({
         {kind === "refund" ? "Submit refund request" : "Send message"}
       </button>
     </form>
-  );
-}
-
-function Field({
-  label,
-  htmlFor,
-  children,
-}: {
-  label: string;
-  htmlFor: string;
-  children: ReactNode;
-}) {
-  return (
-    <div className="grid gap-1.5">
-      <label htmlFor={htmlFor} className="text-sm font-medium">
-        {label}
-      </label>
-      {children}
-    </div>
   );
 }

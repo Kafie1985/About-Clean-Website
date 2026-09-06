@@ -52,7 +52,6 @@ export function InquiryForm({
     const href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setMailto(href);
     setSubmitted(true);
-    window.location.href = href;
   }
 
   if (submitted) {
@@ -63,8 +62,8 @@ export function InquiryForm({
           {kind === "refund" ? "Refund request ready to send" : "Message ready to send"}
         </h3>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
-          Your email app should open with the details addressed to {site.email}.
-          If it does not, tap the button below.
+          Thanks — your message is ready to send to {site.email}. Tap the button
+          below to open it in your email app.
         </p>
         <Button render={<a href={mailto} />} className="mt-5 h-10 rounded-full px-5">
           Open email to {site.email}

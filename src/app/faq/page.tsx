@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { faqs } from "@/lib/faqs";
+import { FaqList } from "@/components/faq-list";
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
@@ -23,18 +17,7 @@ export default function FaqPage() {
       <p className="mt-3 text-center text-base leading-7 text-muted-foreground">
         Find answers to common questions about About Clean.
       </p>
-      <Accordion className="mt-10 rounded-2xl border bg-white px-5 py-2 shadow-sm">
-        {faqs.map((item, index) => (
-          <AccordionItem key={item.question} value={`faq-${index}`}>
-            <AccordionTrigger className="py-4 text-base">
-              {item.question}
-            </AccordionTrigger>
-            <AccordionContent className="text-muted-foreground leading-6">
-              {item.answer}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+      <FaqList />
     </div>
   );
 }

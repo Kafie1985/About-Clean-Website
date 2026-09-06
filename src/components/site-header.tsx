@@ -11,17 +11,10 @@ import {
   MenuIcon,
   PhoneIcon,
   RefreshCcwIcon,
+  XIcon,
 } from "lucide-react";
 
 import { Logo } from "@/components/logo";
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import { nav, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
@@ -72,54 +65,51 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger
-            render={
-              <Button
-                variant="ghost"
-                size="icon"
-                className="lg:hidden"
-              />
-            }
-          >
-            <MenuIcon />
-            <span className="sr-only">Open menu</span>
-          </SheetTrigger>
-          <SheetContent side="right" className="bg-white">
-            <SheetHeader>
-              <SheetTitle>
-                <Logo />
-              </SheetTitle>
-            </SheetHeader>
-            <nav className="flex flex-col gap-1 px-4">
-              {nav.map((item) => {
-                const Icon = icons[item.icon];
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className={cn(
-                      "inline-flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium hover:bg-muted",
-                      isActive(item.href) ? "text-primary" : "text-foreground"
-                    )}
-                  >
-                    <Icon className="size-4 text-primary" />
-                    {item.label}
-                  </Link>
-                );
-              })}
-              <Button
-                render={<a href={site.phoneHref} />}
-                className="mt-4 h-11 rounded-md"
-              >
-                <PhoneIcon />
-                Call {site.phone}
-              </Button>
-            </nav>
-          </SheetContent>
-        </Sheet>
+        <button
+          type="button"
+          className="inline-flex size-10 items-center justify-center rounded-md text-foreground hover:bg-muted lg:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          onClick={() => setOpen((current) => !current)}
+        >
+          {open ? <XIcon className="size-5" /> : <MenuIcon className="size-5" />}
+          <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
+        </button>
       </div>
+
+      {open ? (
+        <div
+          id="mobile-nav"
+          className="border-t bg-white lg:hidden"
+        >
+          <nav className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-4 py-4 sm:px-6">
+            {nav.map((item) => {
+              const Icon = icons[item.icon];
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className={cn(
+                    "inline-flex items-center gap-2 rounded-lg px-3 py-3 text-base font-medium hover:bg-muted",
+                    isActive(item.href) ? "text-primary" : "text-foreground"
+                  )}
+                >
+                  <Icon className="size-4 text-primary" />
+                  {item.label}
+                </Link>
+              );
+            })}
+            <a
+              href={site.phoneHref}
+              className="mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/80"
+            >
+              <PhoneIcon className="size-4" />
+              Call {site.phone}
+            </a>
+          </nav>
+        </div>
+      ) : null}
     </header>
   );
 }

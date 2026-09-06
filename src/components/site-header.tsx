@@ -76,9 +76,9 @@ export function SiteHeader() {
           })}
           <a
             href={site.phoneHref}
-            className="mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-md bg-brand-navy px-4 text-sm font-medium text-white hover:bg-brand-navy/90"
+            className="mt-3 inline-flex h-11 items-center justify-center gap-2 rounded-md bg-brand-gold px-4 text-sm font-medium text-brand-ink hover:bg-brand-gold-deep"
           >
-            <PhoneIcon className="size-4 text-brand-gold" />
+            <PhoneIcon className="size-4" />
             Call {site.phone}
           </a>
         </div>

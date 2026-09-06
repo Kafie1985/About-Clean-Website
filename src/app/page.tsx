@@ -45,7 +45,7 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Button
                 render={<Link href="/locations" />}
-                className="h-12 rounded-md bg-primary px-6 text-base font-semibold text-white hover:bg-primary/90"
+                className="h-12 rounded-md px-6 text-base font-semibold"
               >
                 <MapPinIcon />
                 Find Location
@@ -53,7 +53,7 @@ export default function HomePage() {
               <Button
                 variant="outline"
                 render={<Link href="/contact" />}
-                className="h-12 rounded-md border-white bg-transparent px-6 text-base font-semibold text-white hover:bg-white/10"
+                className="h-12 rounded-md border-brand-gold bg-transparent px-6 text-base font-semibold text-brand-gold hover:bg-brand-gold hover:text-brand-ink"
               >
                 Contact Us
               </Button>

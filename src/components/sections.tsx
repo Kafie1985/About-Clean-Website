@@ -122,13 +122,13 @@ export function CtaBanner() {
         <div className="flex flex-wrap gap-3">
           <Link
             href="/contact"
-            className="inline-flex h-11 items-center rounded-full bg-white px-5 text-sm font-semibold text-[#0b3a5b] hover:bg-sky-100"
+            className="inline-flex h-11 items-center rounded-full bg-brand-gold px-5 text-sm font-semibold text-brand-ink hover:bg-brand-gold-deep"
           >
             Contact us
           </Link>
           <Link
             href="/refunds"
-            className="inline-flex h-11 items-center rounded-full border border-white/30 px-5 text-sm font-semibold text-white hover:bg-white/10"
+            className="inline-flex h-11 items-center rounded-full border border-brand-gold px-5 text-sm font-semibold text-brand-gold hover:bg-brand-gold hover:text-brand-ink"
           >
             Request a refund
           </Link>

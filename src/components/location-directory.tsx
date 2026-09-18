@@ -100,7 +100,7 @@ export function LocationDirectory() {
           <Button
             type="button"
             onClick={useMyLocation}
-            className="h-11 rounded-md bg-sky-300 px-4 text-[#0b3a5b] hover:bg-sky-200"
+            className="h-11 rounded-md bg-brand-gold px-4 text-brand-ink hover:bg-brand-gold-deep"
           >
             <LocateFixedIcon />
             Use My Location

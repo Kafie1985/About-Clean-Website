@@ -45,23 +45,21 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Button
                 render={<Link href="/locations" />}
-                className="h-12 rounded-md bg-primary px-6 text-base font-semibold text-white hover:bg-primary/90"
+                className="h-12 rounded-md px-6 text-base font-semibold"
               >
                 <MapPinIcon />
                 Find Location
               </Button>
               <Button
-                variant="outline"
                 render={<Link href="/balance" />}
-                className="h-12 rounded-md border-white bg-transparent px-6 text-base font-semibold text-white hover:bg-white/10"
+                className="h-12 rounded-md px-6 text-base font-semibold"
               >
                 <CreditCardIcon />
                 Check Balance
               </Button>
               <Button
-                variant="outline"
                 render={<Link href="/contact" />}
-                className="h-12 rounded-md border-white bg-transparent px-6 text-base font-semibold text-white hover:bg-white/10"
+                className="h-12 rounded-md px-6 text-base font-semibold"
               >
                 Contact Us
               </Button>

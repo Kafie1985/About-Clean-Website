@@ -35,7 +35,7 @@ export function InquiryForm({
         </p>
         <a
           href={site.emailHref}
-          className="mt-5 inline-flex h-10 items-center rounded-full bg-primary px-5 text-sm font-medium text-primary-foreground hover:bg-primary/80"
+          className="mt-5 inline-flex h-10 items-center rounded-full bg-brand-gold px-5 text-sm font-medium text-brand-ink hover:bg-brand-gold-deep"
         >
           Email {site.email}
         </a>
@@ -105,7 +105,7 @@ export function InquiryForm({
       </label>
       <button
         type="submit"
-        className="inline-flex h-11 items-center rounded-full bg-primary px-6 text-sm font-medium text-primary-foreground hover:bg-primary/80"
+        className="inline-flex h-11 items-center rounded-full bg-brand-gold px-6 text-sm font-medium text-brand-ink hover:bg-brand-gold-deep"
       >
         {kind === "refund" ? "Submit refund request" : "Send message"}
       </button>

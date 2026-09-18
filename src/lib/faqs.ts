@@ -7,7 +7,7 @@ export const faqs = [
   {
     question: "Where are you located?",
     answer:
-      "We operate six laundromats in Roanoke, Vinton, and Blacksburg, plus three self-serve car washes in Roanoke. Use the Locations page to pick the closest store and get directions.",
+      "We operate four laundromats in Roanoke and Vinton, plus three self-serve car washes in Roanoke. Use the Locations page to pick the closest store and get directions.",
   },
   {
     question: "Do you offer wash and fold or dry cleaning?",
@@ -27,7 +27,7 @@ export const faqs = [
   {
     question: "What amenities are in the laundromats?",
     answer:
-      "Expect coin changers, soap and soda vending, flat-screen TVs, and clean restrooms. Brambleton has two waiting rooms. Williamson Road Coin Laundry also has outdoor car vacuums and a large parking lot.",
+      "Expect coin changers, soap and soda vending, flat-screen TVs, and clean restrooms. Brambleton has two waiting rooms.",
   },
   {
     question: "What do the car washes include?",
@@ -47,7 +47,7 @@ export const faqs = [
   {
     question: "Is there parking?",
     answer:
-      "Yes. Each laundry lists parking on its location page, from 11 spaces plus overflow in Blacksburg to 53 spaces on Williamson Road.",
+      "Yes. Each laundry lists parking on its location page, from 19 spaces at Peters Creek to 25 at Brandon and Brambleton.",
   },
   {
     question: "How do I start a washer or dryer?",

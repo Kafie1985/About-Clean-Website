@@ -4,7 +4,7 @@ export const site = {
   domain: "aboutcleanva.com",
   tagline: "Clean, safe, comfortable, and fast.",
   description:
-    "Self-service laundromats and car washes across the Roanoke Valley and Blacksburg. Big washers, hot dryers, 24-hour wash bays, and the amenities that make the trip easy.",
+    "Self-service laundromats and car washes across the Roanoke Valley. Big washers, hot dryers, 24-hour wash bays, and the amenities that make the trip easy.",
   phone: "(540) 339-6695",
   phoneHref: "tel:+15403396695",
   email: "aboutcleanva@gmail.com",

@@ -1,6 +1,6 @@
 # About Clean
 
-Website for **About Clean**, a self-service laundromat and car wash operator in the Roanoke Valley and Blacksburg, Virginia. Built as a modern replacement for [aboutcleanva.com](https://www.aboutcleanva.com), following the structure and feel of a contemporary laundry chain site: find a location, see hours and machines, contact the team, and request a refund.
+Website for **About Clean**, a self-service laundromat and car wash operator in the Roanoke Valley, Virginia. Built as a modern replacement for [aboutcleanva.com](https://www.aboutcleanva.com), following the structure and feel of a contemporary laundry chain site: find a location, see hours and machines, contact the team, and request a refund.
 
 ## What’s included
 

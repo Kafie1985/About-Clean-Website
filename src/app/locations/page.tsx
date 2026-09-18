@@ -6,7 +6,7 @@ import { LocationDirectory } from "@/components/location-directory";
 export const metadata: Metadata = {
   title: "Locations",
   description:
-    "Find About Clean laundromats and car washes in Roanoke, Vinton, and Blacksburg.",
+    "Find About Clean laundromats and car washes in Roanoke and Vinton.",
 };
 
 export default function LocationsPage() {

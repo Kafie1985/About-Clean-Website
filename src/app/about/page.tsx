@@ -8,7 +8,7 @@ import { locations } from "@/lib/locations";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Clean operates self-service laundromats and car washes in Roanoke, Vinton, and Blacksburg.",
+    "About Clean operates self-service laundromats and car washes in Roanoke and Vinton.",
 };
 
 export default function AboutPage() {
@@ -46,7 +46,7 @@ export default function AboutPage() {
         </p>
         <p className="mt-6 text-lg leading-8 text-foreground/85">
           We currently run {laundryCount} laundromats and {washCount} car washes
-          in Roanoke, Vinton, and Blacksburg. Laundries are open 6 AM to 10 PM
+          in Roanoke and Vinton. Laundries are open 6 AM to 10 PM
           every day (last load 8:45 PM). Car washes stay open 24 hours with
           self-serve bays, vacuums, and a dry-off area.
         </p>

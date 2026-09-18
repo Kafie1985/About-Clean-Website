@@ -16,9 +16,8 @@ export function SiteFooter() {
         <div className="md:col-span-1">
           <Logo inverted />
           <p className="mt-4 max-w-xs text-sm leading-6 text-sky-100/80">
-            Self-service laundromats and car washes in Roanoke, Vinton, and
-            Blacksburg. Clean stores, big machines, and hours that fit real
-            life.
+            Self-service laundromats and car washes in Roanoke and Vinton.
+            Clean stores, big machines, and hours that fit real life.
           </p>
         </div>
 
@@ -94,7 +93,7 @@ export function SiteFooter() {
           <p>
             © {new Date().getFullYear()} {site.legalName}. All rights reserved.
           </p>
-          <p>Serving the Roanoke Valley and Blacksburg, Virginia.</p>
+          <p>Serving the Roanoke Valley, Virginia.</p>
         </div>
       </div>
     </footer>

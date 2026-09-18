@@ -12,6 +12,7 @@ export const site = {
   laundryHours: "Open Every Day | 6 AM – 10 PM",
   laundryLastLoad: "Last load 8:45 PM",
   carWashHours: "Open 24 Hours",
+  balanceEmbedUrl: "https://live.laundrycard.com",
   supportHours:
     "Have questions? We’re here to help. Reach us any day of the week.",
 } as const;

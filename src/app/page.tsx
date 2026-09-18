@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ClockIcon, MapPinIcon, PhoneIcon } from "lucide-react";
+import { ClockIcon, CreditCardIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 
 import { LocationCard } from "@/components/location-card";
 import {
@@ -49,6 +49,14 @@ export default function HomePage() {
               >
                 <MapPinIcon />
                 Find Location
+              </Button>
+              <Button
+                variant="outline"
+                render={<Link href="/balance" />}
+                className="h-12 rounded-md border-white bg-transparent px-6 text-base font-semibold text-white hover:bg-white/10"
+              >
+                <CreditCardIcon />
+                Check Balance
               </Button>
               <Button
                 variant="outline"

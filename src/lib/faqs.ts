@@ -15,6 +15,11 @@ export const faqs = [
       "Our stores are self-service. We do not offer wash-and-fold or dry cleaning. Bring your laundry, use the machines, and you’re on your way.",
   },
   {
+    question: "How do I check my laundry card balance?",
+    answer:
+      "Use the Check Balance button on the home page, or go to the Card Balance Checker. Enter your card number in the checker to see the remaining value.",
+  },
+  {
     question: "How do I pay?",
     answer:
       "Stores are coin-operated and include coin changers. Car washes also have change machines and a vendor for wash supplies. Bring cash or use the changer on site.",

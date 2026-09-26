@@ -1,7 +1,17 @@
 import type { NextConfig } from "next";
 
+import { site } from "./src/lib/site";
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  async redirects() {
+    return [
+      {
+        source: "/balance",
+        destination: site.balanceUrl,
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

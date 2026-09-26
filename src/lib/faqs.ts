@@ -17,7 +17,7 @@ export const faqs = [
   {
     question: "How do I check my laundry card balance?",
     answer:
-      "Use the Check Balance button on the home page, or go to the Card Balance Checker. Enter your card number in the checker to see the remaining value.",
+      "Use the Check Balance button on the home page. It takes you to the Laundroworks card portal, where you can enter your card number and see the remaining value.",
   },
   {
     question: "How do I pay?",

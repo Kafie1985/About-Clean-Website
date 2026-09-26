@@ -51,7 +51,13 @@ export default function HomePage() {
                 Find Location
               </Button>
               <Button
-                render={<a href={site.balanceUrl} />}
+                render={
+                  <a
+                    href={site.balanceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  />
+                }
                 className="h-12 rounded-md px-6 text-base font-semibold"
               >
                 <CreditCardIcon />
